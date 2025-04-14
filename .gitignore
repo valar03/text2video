@@ -37,3 +37,6 @@ next-env.d.ts
 out/
 .env
 build
+*.pyc
+public/videos/README (1).md
+public/voiceovers/voiceover_John.mp3
