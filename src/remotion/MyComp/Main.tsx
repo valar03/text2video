@@ -12,7 +12,7 @@ import { loadFont, fontFamily } from "@remotion/google-fonts/Inter";
 import { generateSlideTexts, backgroundVideos, videoOverlays } from "../../../types/constants";
 import { Rings } from "./Rings";
 import { NextLogo } from "./NextLogo";
-import gsap from "gsap";
+// import gsap from "gsap";
 
 const name = "John";
 const amount = "150,000";
@@ -44,7 +44,7 @@ const VideoBackground = ({ videoSrc, overlayColor }) => {
       {/* Video from public directory */}
       <Video 
         src={videoSrc} 
-        muted 
+         
         startFrom={0}
         className="w-full h-full object-cover" 
       />
@@ -541,16 +541,17 @@ const BackgroundElements = ({ slideIndex }) => {
   
   return <>{shapes}</>;
 };
-
 export const Main = () => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
-
-  const transitionStart = 2 * fps; // 2 seconds for logo + rings
+  const transitionStart = 2 * fps;
   const transitionDuration = 1 * fps;
-  const slideFrames = 75; // More frames for each slide
+  const voiceoverStartFrame = transitionStart + transitionDuration;
+  const slideFrames = 75;
+  const totalSlidesDuration = slideTexts.length * slideFrames;
 
   const [audioReady, setAudioReady] = useState(false);
+  const [play, setPlay] = useState(false);
 
   useEffect(() => {
     const triggerVoiceover = async () => {
@@ -572,69 +573,95 @@ export const Main = () => {
         console.error('Fetch error:', err);
       }
     };
-  
+
     triggerVoiceover();
   }, []);
-  
 
   return (
     <AbsoluteFill className="bg-gradient-to-br from-blue-500 to-purple-600">
-      {/* Logo + Rings Sequence with enhanced colorful animations - keeping this the same as requested */}
-      <Sequence durationInFrames={transitionStart + transitionDuration}>
-        <AbsoluteFill className="justify-center items-center">
-          <ColorfulRings />
+      {!play ? (
+        <AbsoluteFill className="items-center justify-center">
+          <button
+            onClick={() => setPlay(true)}
+            style={{
+              padding: '16px 32px',
+              fontSize: '20px',
+              fontWeight: 'bold',
+              backgroundColor: '#4f46e5',
+              color: 'white',
+              borderRadius: '8px',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            Play Video
+          </button>
         </AbsoluteFill>
-        <AbsoluteFill className="justify-center items-center">
-          <ColorfulLogoAnimation />
-        </AbsoluteFill>
-      </Sequence>
+      ) : (
+        <>
+          <Sequence from={0} durationInFrames={transitionStart + transitionDuration}>
+            <AbsoluteFill className="justify-center items-center">
+              <Rings />
+            </AbsoluteFill>
+            <AbsoluteFill className="justify-center items-center">
+              <NextLogo />
+            </AbsoluteFill>
+          </Sequence>
 
-      {audioReady && (
-            <Audio
-              src={`/voiceovers/voiceover_${name}.wav`}
-              startFrom={0}
-              volume={1}
-            />
+          {audioReady && (
+            <Sequence
+              from={voiceoverStartFrame}
+              durationInFrames={totalSlidesDuration}
+            >
+              <Audio
+                src={`/voiceovers/voiceover_${name}.mp3`}
+                volume={1}
+              />
+            </Sequence>
           )}
 
-      {/* Enhanced Slides Sequence with PowerPoint-style transitions and video backgrounds */}
-      {slideTexts.map((lines, slideIndex) => {
-        const slideStart = transitionStart + transitionDuration + slideIndex * slideFrames;
-        const isActive = frame >= slideStart && frame < slideStart + slideFrames + 5;
-        const isLastSlide = slideIndex === slideTexts.length - 1;
-        
-        return (
-          <Sequence
-            key={slideIndex}
-            from={slideStart}
-            durationInFrames={Infinity}
-          >
-            <SlideTransition slideIndex={slideIndex} isActive={isActive}  isLastSlide={slideIndex === slideTexts.length - 1}>
-              <BackgroundElements slideIndex={slideIndex} />
-              <AbsoluteFill className="justify-center items-center">
-                <div className="flex flex-col gap-6 items-center">
-                  {lines.map((line, lineIndex) => (
-                    <TextAnimation 
-                      key={lineIndex} 
-                      index={lineIndex}
-                      textColor="white" // Using white text for better visibility on video backgrounds
-                    >
-                      {line}
-                    </TextAnimation>
-                  ))}
-                  
-                  {/* Add CTA Button only to the last slide */}
-                  {isLastSlide && (
-                    <div style={{ marginTop: '40px' }}>
-                      <CTAButton text="Learn More" url="https://google.com" />
+          {slideTexts.map((lines, slideIndex) => {
+            const slideStart = voiceoverStartFrame + slideIndex * slideFrames;
+            const isActive = frame >= slideStart && frame < slideStart + slideFrames + 5;
+            const isLastSlide = slideIndex === slideTexts.length - 1;
+
+            return (
+              <Sequence
+                key={slideIndex}
+                from={slideStart}
+                durationInFrames={slideFrames}
+              >
+                <SlideTransition
+                  slideIndex={slideIndex}
+                  isActive={isActive}
+                  isLastSlide={isLastSlide}
+                >
+                  <BackgroundElements slideIndex={slideIndex} />
+                  <AbsoluteFill className="justify-center items-center">
+                    <div className="flex flex-col gap-6 items-center">
+                      {lines.map((line, lineIndex) => (
+                        <TextAnimation
+                          key={lineIndex}
+                          index={lineIndex}
+                          textColor="white"
+                        >
+                          {line}
+                        </TextAnimation>
+                      ))}
+
+                      {isLastSlide && (
+                        <div style={{ marginTop: '40px' }}>
+                          <CTAButton text="Learn More" url="https://google.com" />
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </AbsoluteFill>
-            </SlideTransition>
-          </Sequence>
-        );
-      })}
+                  </AbsoluteFill>
+                </SlideTransition>
+              </Sequence>
+            );
+          })}
+        </>
+      )}
     </AbsoluteFill>
   );
 };

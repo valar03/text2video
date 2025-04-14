@@ -8,6 +8,7 @@
     "url": "https://mohitya.dev"
   },
   "dependencies": {
+    "@google-cloud/text-to-speech": "^6.0.1",
     "@remotion/bundler": "4.0.286",
     "@remotion/cli": "4.0.286",
     "@remotion/google-fonts": "4.0.286",
@@ -18,9 +19,10 @@
     "@remotion/shapes": "4.0.286",
     "@remotion/tailwind-v4": "4.0.286",
     "clsx": "2.1.1",
+    "google-tts-api": "^0.0.6",
     "gsap": "^3.12.7",
     "gtts": "^0.2.1",
-    "next": "15.2.3",
+    "next": "^15.3.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "remotion": "4.0.286",

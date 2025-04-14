@@ -1,9 +1,12 @@
 # generate_voiceover.py
 import sys
 import json
+from gtts import gTTS
+import os
+
+# Print Python executable and path for debugging
 print("Python executable:", sys.executable)
 print("Python path:", sys.path)
-from TTS.api import TTS
 
 # Read JSON from stdin
 input_data = json.load(sys.stdin)
@@ -14,11 +17,14 @@ date = input_data["date"]
 # Voiceover text
 text = f"Congratulations {name}! Your home loan of ${amount} has been approved on {date}. Welcome to your financial journey."
 
-# Load TTS model
-tts = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC", progress_bar=False, gpu=False)
+# Generate the TTS (Text to Speech)
+tts = gTTS(text=text, lang='en')
 
-# Output path
-output_path = f"public/voiceovers/voiceover_{name}.wav"
-tts.tts_to_file(text=text, file_path=output_path)
+# Define the output path for the audio file
+output_path = f"public/voiceovers/voiceover_{name}.mp3"
 
-print(f" Voiceover saved to {output_path}")
+# Save the audio file
+tts.save(output_path)
+
+# Confirm the voiceover was saved
+print(f"Voiceover saved to {output_path}")
