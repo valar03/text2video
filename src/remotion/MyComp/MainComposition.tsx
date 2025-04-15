@@ -12,6 +12,9 @@ import { Sequence, Audio } from 'remotion';
 
 const MainComposition = ({ frame, fps }: { frame: number; fps: number }) => {
     const searchParams = new URLSearchParams(window.location.search);
+    const pathParts = window.location.pathname.split("/"); 
+    const template = pathParts[3];  // "template1"
+
     const username = searchParams.get('username') || 'John Doe';
     const amount = searchParams.get('amount') || '150,000';
     const date = searchParams.get('tenure') || 'April 7th, 2025';
@@ -86,7 +89,7 @@ const MainComposition = ({ frame, fps }: { frame: number; fps: number }) => {
 
             return (
               <Sequence key={slideIndex} from={slideStart} durationInFrames={slideFrames}>
-                <SlideTransition slideIndex={slideIndex} isActive={isActive} isLastSlide={isLastSlide}>
+                <SlideTransition slideIndex={slideIndex} template={template} isActive={isActive} isLastSlide={isLastSlide}>
                   <BackgroundElements slideIndex={slideIndex} />
                   <AbsoluteFill className="justify-center items-center">
                     <div className="flex flex-col gap-6 items-center">

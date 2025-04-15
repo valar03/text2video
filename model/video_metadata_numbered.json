@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "filename": "A happy family (couple and son) exiting an apartment.mp4",
+    "filename": "A_happy_family_couple_and_son_exiting_an_apartment.mp4",
     "description": "A happy family (couple and son) exiting an apartment",
     "tags": [
       "happy",
@@ -15,7 +15,7 @@
   },
   {
     "id": 2,
-    "filename": "A woman sitting at home with a laptop, uploading mortgage document.mp4",
+    "filename": "A_woman_sitting_at_home_with_a_laptop_uploading_mortgage_document.mp4",
     "description": "A woman sitting at home with a laptop, uploading mortgage document",
     "tags": [
       "woman",
@@ -30,7 +30,7 @@
   },
   {
     "id": 3,
-    "filename": "Elderly couple hugging after final mortgage payment.mp4",
+    "filename": "Elderly_couple_hugging_after_final_mortgage_payment.mp4",
     "description": "Elderly couple hugging after final mortgage payment",
     "tags": [
       "elderly",
@@ -44,7 +44,7 @@
   },
   {
     "id": 4,
-    "filename": "Gated community.mp4",
+    "filename": "Gated_community.mp4",
     "description": "Gated community",
     "tags": [
       "gated",
@@ -53,7 +53,7 @@
   },
   {
     "id": 5,
-    "filename": "Happy couple looking at an home loan approved page.mp4",
+    "filename": "Happy_couple_looking_at_an_home_loan_approved_page.mp4",
     "description": "Happy couple looking at an home loan approved page",
     "tags": [
       "happy",
@@ -67,7 +67,7 @@
   },
   {
     "id": 6,
-    "filename": "Happy couple receiving house keys.mp4",
+    "filename": "Happy_couple_receiving_house_keys.mp4",
     "description": "Happy couple receiving house keys",
     "tags": [
       "happy",
@@ -79,7 +79,7 @@
   },
   {
     "id": 7,
-    "filename": "happy family (Father and 2 children) exiting a beach home.mp4",
+    "filename": "happy_family_Father_and_2_children_exiting_a_beach_home.mp4",
     "description": "happy family (Father and 2 children) exiting a beach home",
     "tags": [
       "happy",
@@ -94,7 +94,7 @@
   },
   {
     "id": 8,
-    "filename": "House with a red 'SOLD' sign on the front lawn.mp4",
+    "filename": "House_with_a_red_SOLD_sign_on_the_front_lawn.mp4",
     "description": "House with a red 'SOLD' sign on the front lawn",
     "tags": [
       "house",
@@ -109,7 +109,7 @@
   },
   {
     "id": 9,
-    "filename": "Loan officer pointing explaining.mp4",
+    "filename": "Loan_officer_pointing_explaining.mp4",
     "description": "Loan officer pointing explaining",
     "tags": [
       "loan",
@@ -120,7 +120,7 @@
   },
   {
     "id": 10,
-    "filename": "Loan Pre Approval.mp4",
+    "filename": "Loan_Pre_Approval.mp4",
     "description": "Loan Pre Approval",
     "tags": [
       "loan",
@@ -130,7 +130,7 @@
   },
   {
     "id": 11,
-    "filename": "Luxury apartment complex.mp4",
+    "filename": "Luxury_apartment_complex.mp4",
     "description": "Luxury apartment complex",
     "tags": [
       "luxury",
@@ -140,10 +140,10 @@
   },
   {
     "id": 12,
-    "filename": "Man checking looking at a tablet over a cup of coffee.mp4",
+    "filename": "Woman_checking_looking_at_a_tablet_over_a_cup_of_coffee",
     "description": "Man checking looking at a tablet over a cup of coffee",
     "tags": [
-      "man",
+      "woman",
       "checking",
       "looking",
       "tablet",
@@ -154,7 +154,7 @@
   },
   {
     "id": 13,
-    "filename": "Minimalist modern house with stone and wood accents (2).mp4",
+    "filename": "Minimalist_modern_house_with_stone_and_wood_accents.mp4",
     "description": "Minimalist modern house with stone and wood accents (2)",
     "tags": [
       "minimalist",
@@ -170,7 +170,7 @@
   },
   {
     "id": 14,
-    "filename": "Minimalist modern house with stone and wood accents.mp4",
+    "filename": "Minimalist_scriscapper_buildings",
     "description": "Minimalist modern house with stone and wood accents",
     "tags": [
       "minimalist",
@@ -185,7 +185,7 @@
   },
   {
     "id": 15,
-    "filename": "Modern suburban house with well-maintained lawn under clear sky.mp4",
+    "filename": "Modern_suburban_house_with_wellmaintained_lawn_under_clear_sky.mp4",
     "description": "Modern suburban house with well-maintained lawn under clear sky",
     "tags": [
       "modern",
@@ -201,7 +201,7 @@
   },
   {
     "id": 16,
-    "filename": "Realistic view of financial documents.mp4",
+    "filename": "Realistic_view_of_financial_documents.mp4",
     "description": "Realistic view of financial documents",
     "tags": [
       "realistic",
@@ -212,7 +212,7 @@
   },
   {
     "id": 17,
-    "filename": "Row of houses in a quiet residential neighborhood at sunset.mp4",
+    "filename": "Row_of_houses_in_a_quiet_residential_neighborhood_at_sunset.mp4",
     "description": "Row of houses in a quiet residential neighborhood at sunset",
     "tags": [
       "row",
@@ -225,7 +225,7 @@
   },
   {
     "id": 18,
-    "filename": "Signing mortgage documents.mp4",
+    "filename": "Signing_mortgage_documents.mp4",
     "description": "Signing mortgage documents",
     "tags": [
       "signing",
@@ -235,7 +235,7 @@
   },
   {
     "id": 19,
-    "filename": "Single Mother holding house keys.mp4",
+    "filename": "Single_Mother_holding_house_keys.mp4",
     "description": "Single Mother holding house keys",
     "tags": [
       "single",
@@ -247,7 +247,7 @@
   },
   {
     "id": 20,
-    "filename": "Single-story home with white picket fence and green garden.mp4",
+    "filename": "Single_story_home_with_white_picket_fence_and_green_garden.mp4",
     "description": "Single-story home with white picket fence and green garden",
     "tags": [
       "single-story",
@@ -263,7 +263,7 @@
   },
   {
     "id": 21,
-    "filename": "Smiling Woman looking at laptop with coffee.mp4",
+    "filename": "Smiling_Woman_looking_at_laptop_with_coffee.mp4",
     "description": "Smiling Woman looking at laptop with coffee",
     "tags": [
       "smiling",
@@ -276,7 +276,7 @@
   },
   {
     "id": 22,
-    "filename": "Urban skyline view with high-rise apartments.mp4",
+    "filename": "Urban_skyline_view_with_high_rise_apartments.mp4",
     "description": "Urban skyline view with high-rise apartments",
     "tags": [
       "urban",
@@ -289,7 +289,7 @@
   },
   {
     "id": 23,
-    "filename": "View from inside a furnished home looking o.mp4",
+    "filename": "View_from_inside_a_furnished_home_looking_o.mp4",
     "description": "View from inside a furnished home looking o",
     "tags": [
       "view",

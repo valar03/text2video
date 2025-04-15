@@ -6,8 +6,7 @@ import axios from 'axios';
 const prompts = [
   'Welcome to our video presentation!',
   'Get ready for an exciting journey!',
-  'We have some amazing content for you!',
-  'Stay tuned for more updates!',
+  'Loan officer and family',
 ];
 
 export default function LoadingPage() {
@@ -26,20 +25,12 @@ export default function LoadingPage() {
         for (const item of resultVideos) {
           if (item.result) {
             savedVideoNames.push(item.result);
-
-            const src = `/videos/${item.result}`;
-            const destFolder = `/videos/${template}`;
-            const srcFullPath = `${window.location.origin}${src}`;
-
-            const videoBlob = await fetch(srcFullPath).then((r) => r.blob());
-            await videoBlob.arrayBuffer(); // simulate "moving" logic
-
-            console.log(`✅ Simulated move: ${src} → ${destFolder}/${item.result}`);
+            console.log(`✅ Simulated move: ${item.result}`);
           }
         }
 
         localStorage.setItem(`template-${template}-videos`, JSON.stringify(savedVideoNames));
-
+        console.log('✅ Videos saved to localStorage:', savedVideoNames);
         const encoded = {
           username: encodeURIComponent(searchParams.get('username') || ''),
           amount: encodeURIComponent(searchParams.get('amount') || ''),

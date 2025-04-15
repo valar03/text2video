@@ -1,6 +1,6 @@
 import { AbsoluteFill, useVideoConfig, useCurrentFrame } from 'remotion';
 import VideoBackground from './VideoBackground';
-import { getBackgroundVideos, videoOverlays } from '../../../types/constants';
+import { videoOverlays } from '../../../types/constants';
 
 interface SlideProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const SlideTransition = ({ children, slideIndex, isActive, isLastSlide, template
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
   const transitionType = slideIndex % 5;
-
+  
   const entryProgress = (frame < 20 ? frame : 20) / 20;
   let entryAnimation: React.CSSProperties = {};
 
@@ -35,8 +35,19 @@ const SlideTransition = ({ children, slideIndex, isActive, isLastSlide, template
       entryAnimation = { opacity: entryProgress };
   }
 
-  const backgroundList = getBackgroundVideos(template);
+  const fallbackVideos = [
+    "/videos/View_from_inside_a_furnished_home_looking_o.mp4",
+    "/videos/View_from_inside_a_furnished_home_looking_o.mp4",
+    "/videos/Loan_Pre_Approval.mp4"
+  ];
+  
+  const raw = localStorage.getItem(`template-${template}-videos`);
+  
+  const backgroundList = raw ? JSON.parse(raw) : fallbackVideos;
+  
   const videoSrc = backgroundList[slideIndex % backgroundList.length];
+  // console.log("videoSrc", videoSrc);
+  // console.log("slideIndex", slideIndex);
   const overlayColor = videoOverlays[slideIndex % videoOverlays.length];
 
   return (
