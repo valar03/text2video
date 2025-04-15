@@ -59,92 +59,21 @@ const SlideTransition = ({ children, slideIndex, isActive, isLastSlide  }) => {
   const containerRef = useRef(null);
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  
-  // Choose transition effect based on slideIndex
-  const transitionType = slideIndex % 5;
-  
-  // Entry animations based on transition type
-  let entryAnimation;
-  let exitAnimation;
-  
-  const entryProgress = interpolate(
-    frame, 
-    [0, 20], 
-    [0, 1], 
-    { extrapolateRight: "clamp" }
-  );
-  
-  
-  // Different PowerPoint-style transitions
-  switch (transitionType) {
-    case 0: // Fade + Zoom
-      entryAnimation = {
-        opacity: entryProgress,
-        transform: `scale(${interpolate(frame, [0, 20], [0.8, 1], { extrapolateRight: "clamp" })})`
-      };
-      break;
-      
-    case 1: // Slide from right
-      entryAnimation = {
-        transform: `translateX(${interpolate(frame, [0, 20], [100, 0], { extrapolateRight: "clamp" })}%)`
-      };
-      break;
-      
-    case 2: // Wipe effect
-      entryAnimation = {
-        clipPath: `inset(0 ${interpolate(frame, [0, 20], [100, 0], { extrapolateRight: "clamp" })}% 0 0)`
-      };
-      break;
-      
-    case 3: // Flip effect
-      entryAnimation = {
-        transform: `perspective(1000px) rotateY(${interpolate(frame, [0, 20], [90, 0], { extrapolateRight: "clamp" })}deg)`
-      };
-      break;
-      
-    case 4: // Blinds effect
-      const blindsProgress = entryProgress;
-      entryAnimation = {
-        clipPath: `inset(${blindsProgress < 0.2 ? 0 : 0}% 0 ${blindsProgress < 0.2 ? 100 - blindsProgress * 500 : blindsProgress < 0.4 ? 0 : 0}% 0,
-                   ${blindsProgress < 0.4 ? 0 : 0}% 0 ${blindsProgress < 0.4 ? 100 : blindsProgress < 0.6 ? 100 - (blindsProgress - 0.4) * 500 : 0}% 0,
-                   ${blindsProgress < 0.6 ? 0 : 0}% 0 ${blindsProgress < 0.6 ? 100 : blindsProgress < 0.8 ? 100 - (blindsProgress - 0.6) * 500 : 0}% 0,
-                   ${blindsProgress < 0.8 ? 0 : 0}% 0 ${blindsProgress < 0.8 ? 100 : 100 - (blindsProgress - 0.8) * 500}% 0)`
-      };
-      break;
-      
-    default:
-      entryAnimation = { opacity: entryProgress };
-  }
-  
-  const animationStyle = isActive
-  ? frame < 20
-    ? entryAnimation
-    : !isLastSlide
-    ? exitAnimation
-    : {}
-  : { opacity: 0 };
-  
-  // Get video source and overlay for this slide
-  const videoSrc = backgroundVideos[slideIndex % backgroundVideos.length];
-  const overlayColor = videoOverlays[slideIndex % videoOverlays.length];
-  
+  const searchParams = useSearchParams();
+
+  const username = searchParams.get('username');
+  const amount = searchParams.get('amount');
+  const date = searchParams.get('date');
+
   return (
-    <AbsoluteFill
-      ref={containerRef}
-      style={{
-        ...animationStyle,
-      }}
-    >
-      {/* Video Background */}
-      <VideoBackground 
-        videoSrc={videoSrc} 
-        overlayColor={overlayColor} 
+    <AbsoluteFill>
+      <MainComposition
+        frame={frame}
+        fps={fps}
+        username={username}
+        amount={amount}
+        date={date}
       />
-      
-      {/* Slide Content */}
-      <AbsoluteFill>
-        {children}
-      </AbsoluteFill>
     </AbsoluteFill>
   );
 };

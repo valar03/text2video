@@ -1,53 +1,31 @@
-"use client";
+'use client';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-import { Player } from "@remotion/player";
-import type { NextPage } from "next";
-import React, { useState } from "react";
-import {
-  DURATION_IN_FRAMES,
-  VIDEO_FPS,
-  VIDEO_HEIGHT,
-  VIDEO_WIDTH,
-} from "../../types/constants";
-import { Main } from "../remotion/MyComp/Main";
+export default function HomePage() {
+  const router = useRouter();
+  const [template, setTemplate] = useState('template1');
+  const [username, setUsername] = useState('');
+  const [amount, setAmount] = useState('');
+  const [tenure, setTenure] = useState('');
 
-const Home: NextPage = () => {
-  const [showLastFrame, setShowLastFrame] = useState(false);
+  const handleSubmit = () => {
+    if (username && template) {
+      router.push(`/user/${username}/${template}?username=${username}&amount=${amount}&tenure=${tenure}`);
+    }
+  };
 
   return (
-    <div style={{ backgroundColor: "white", minHeight: "100vh" }}>
-      <div className="max-w-screen-md m-auto mb-5">
-        <div className="overflow-hidden rounded-geist shadow-[0_0_200px_rgba(0,0,0,0.15)] mb-10 mt-16">
-          {showLastFrame ? (
-            <div
-              style={{
-                width: "100%",
-                height: VIDEO_HEIGHT,
-                backgroundColor: "white",
-              }}
-            >
-              {/* 🔥 This renders the final frame with your CTA */}
-              <Main frame={DURATION_IN_FRAMES + 10} />
-            </div>
-          ) : (
-            <div style={{ backgroundColor: "white" }}>
-              <Player
-                component={Main}
-                durationInFrames={DURATION_IN_FRAMES}
-                fps={VIDEO_FPS}
-                compositionHeight={VIDEO_HEIGHT}
-                compositionWidth={VIDEO_WIDTH}
-                style={{ width: "100%" }}
-                controls
-                autoPlay
-                loop={false}
-              />
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+    <main className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Video Generator</h1>
+      <select value={template} onChange={e => setTemplate(e.target.value)} className="border p-2 mb-2">
+        <option value="template1">Template 1</option>
+        {/* Add more templates here */}
+      </select>
+      <input placeholder="Username" className="block border p-2 mb-2" value={username} onChange={e => setUsername(e.target.value)} />
+      <input placeholder="Amount" className="block border p-2 mb-2" value={amount} onChange={e => setAmount(e.target.value)} />
+      <input placeholder="Date" className="block border p-2 mb-2" value={tenure} onChange={e => setTenure(e.target.value)} />
+      <button className="bg-blue-500 text-white px-4 py-2" onClick={handleSubmit}>Generate</button>
+    </main>
   );
-};
-
-export default Home;
+}
