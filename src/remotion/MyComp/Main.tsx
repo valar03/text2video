@@ -9,7 +9,7 @@ import {
   Video,
 } from "remotion";
 import { loadFont, fontFamily } from "@remotion/google-fonts/Inter";
-import { generateSlideTexts, backgroundVideos, videoOverlays } from "../../../types/constants";
+import { generateSlideTexts, videoOverlays } from "../../../types/constants";
 import { Rings } from "./Rings";
 import { NextLogo } from "./NextLogo";
 // import gsap from "gsap";
@@ -550,6 +550,27 @@ export const Main = () => {
   const slideFrames = 75;
   const totalSlidesDuration = slideTexts.length * slideFrames;
 
+  const [backgroundVideos, setVideoPaths] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const res = await fetch("/api/video-fetch");
+        const data = await res.json();
+        console.log("Data:",data);
+        setVideoPaths(data); // array of `/videos/xyz.mp4`
+        setIsLoading(false);
+      } catch (err) {
+        console.error("Failed to fetch videos", err);
+      }
+    };
+
+    fetchVideos();
+  }, []);
+
+  console.log("videos-final:", backgroundVideos);
+
   const [audioReady, setAudioReady] = useState(false);
   const [play, setPlay] = useState(false);
 
@@ -635,6 +656,7 @@ export const Main = () => {
                   slideIndex={slideIndex}
                   isActive={isActive}
                   isLastSlide={isLastSlide}
+                  backgroundVideos={backgroundVideos}
                 >
                   <BackgroundElements slideIndex={slideIndex} />
                   <AbsoluteFill className="justify-center items-center">

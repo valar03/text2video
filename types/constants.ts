@@ -33,7 +33,7 @@ export const backgroundVideos = [
 export const videoOverlays = [
   "rgba(0, 0, 0, 0.3)",  // Slight dark overlay for first slide
   "rgba(0, 0, 0, 0.4)",  // Medium dark overlay for second slide
-  "rgba(0, 0, 0, 0.25)"  // Light dark overlay for third slide
+  "rgba(195, 147, 147, 0.25)"  // Light dark overlay for third slide
 ];
 
 export const generateSlideTexts = (

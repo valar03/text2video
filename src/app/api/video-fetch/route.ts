@@ -1,17 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const FLASK_API_URL = 'http://localhost:3005/vid'; // Update with your Flask API URL
+const FLASK_API_URL = 'http://localhost:3005/vid'; // Flask API endpoint
 
 export async function GET(req: NextRequest) {
-  // Hardcoded prompts
   const prompts = [
-    "couple in front of the house",
-    "female looking at home loan docs",
-    "loan officer with family"
+    "Create a video about a loan approval"
   ];
 
   try {
-    // Send the prompts to the Flask API
     const response = await fetch(FLASK_API_URL, {
       method: 'POST',
       headers: {
@@ -25,7 +21,12 @@ export async function GET(req: NextRequest) {
     }
 
     const data = await response.json();
-    return NextResponse.json(data); // Return the response from the Flask API
+
+    // Corrected line here
+    const videoPaths = data[0].result.map((video: string) => `/videos/${video}`);
+    console.log("videopaths:", videoPaths);
+
+    return NextResponse.json(videoPaths);
   } catch (error: unknown) {
     console.error('Error communicating with Flask API:', error);
     return NextResponse.json(
