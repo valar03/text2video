@@ -1,54 +1,67 @@
 import { z } from "zod";
 
+// 🎞️ Composition Settings
 export const COMP_NAME = "LoanVideo";
-
-// 👇 Only include this if you still want to support `title` via props
-export const CompositionProps = z.object({
-  title: z.string(),
-});
-// export const defaultMyCompProps: z.infer<typeof CompositionProps> = {
-//   title: "Congratulations John Doe!",
-// };
-
-export const DURATION_IN_FRAMES = 320; // 3 slides × 60 frames = 180 (or adjust based on # of slides)
+export const DURATION_IN_FRAMES = 320;
 export const VIDEO_WIDTH = 1280;
 export const VIDEO_HEIGHT = 720;
 export const VIDEO_FPS = 20;
 
-// // 🧾 Slide Texts for Video
-// export const slideTexts = [
-//   ["Exciting News for John!", "Your Home Loan is Approved!"],
-//   ["Amount: $150,000", "Approval Date: April 7th, 2025"],
-//   ["Welcome to a New Financial Journey!"]
-// ];
+export const CompositionProps = z.object({
+  title: z.string(),
+});
+// Optional default props if needed
+// export const defaultMyCompProps: z.infer<typeof CompositionProps> = {
+//   title: "Congratulations John Doe!",
+// };
 
-// 🎥 Background Videos for each slide - local video paths
-export const backgroundVideos = [
+// 📦 Overlay colors to improve contrast
+export const videoOverlays = [
+  "rgba(0, 0, 0, 0.3)",
+  "rgba(0, 0, 0, 0.4)",
+  "rgba(0, 0, 0, 0.25)"
+];
+
+// 📽️ Fallback background videos (used if localStorage fails)
+export const fallbackBackgroundVideos = [
   "/videos/video1.mp4",
   "/videos/video2.mp4",
   "/videos/video3.mp4"
 ];
 
-// 🎨 Overlay colors for videos (to improve text readability)
-export const videoOverlays = [
-  "rgba(0, 0, 0, 0.3)",  // Slight dark overlay for first slide
-  "rgba(0, 0, 0, 0.4)",  // Medium dark overlay for second slide
-  "rgba(0, 0, 0, 0.25)"  // Light dark overlay for third slide
-];
+// ✅ Dynamically fetch background videos from localStorage
+export const getBackgroundVideos = (template: string): string[] => {
+  if (typeof window === "undefined") return fallbackBackgroundVideos;
 
-export const generateSlideTexts = (
-  name: string,
-  amount: string,
-  date: string
-) => [
+  try {
+    const stored = localStorage.getItem(`template-${template}-videos`);
+    const filenames = JSON.parse(stored || "[]");
+    
+    if (!Array.isArray(filenames) || !filenames.length) {
+      return fallbackBackgroundVideos;
+    }
+
+    return filenames.map((name: string) => `${name}`);
+  } catch (err) {
+    console.error("❌ Failed to load background videos from localStorage:", err);
+    return fallbackBackgroundVideos;
+  }
+};
+
+// ✨ Voiceover + Slide generator
+export const generateSlideTexts = (name: string, amount: string, date: string) => [
   [`Exciting News for ${name}!`, "Your Home Loan is Approved!"],
   [`Amount: $${amount}`, `Approval Date: ${date}`],
   ["Welcome to a New Financial Journey!"]
 ];
 
-export const generateVoiceoverScript = (
-  name: string,
-  amount: string,
-  date: string
-) =>
+export const generateVoiceoverScript = (name: string, amount: string, date: string) =>
   `Congratulations ${name}! Your Home Loan of $${amount} has been approved on ${date}. Welcome to your financial journey.`;
+
+// 💬 Fallback prompts
+export const prompts = [
+  "Welcome to our video presentation!",
+  "Get ready for an exciting journey!",
+  "We have some amazing content for you!",
+  "Stay tuned for more updates!"
+];

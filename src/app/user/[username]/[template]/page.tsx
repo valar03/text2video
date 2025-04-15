@@ -8,9 +8,8 @@ import { Player } from '@remotion/player';
 import Main from '@/remotion/MyComp/Main';
 
 export default function TemplatePage() {
-  // const { username } = useParams();
+  const { username } = useParams();
   const searchParams = useSearchParams();
-  const  username = searchParams.get('username') || '';
 
   const amount = searchParams.get('amount') || '';
   const tenure = searchParams.get('date') || '';

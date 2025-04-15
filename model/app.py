@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from RAG_retrieval_custom_stock_vids import answer_with_rag
-
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 @app.route('/vid', methods=['POST'])
 def generate_videos():
     data = request.get_json()
@@ -16,7 +16,8 @@ def generate_videos():
         try:
             answer, video_result = answer_with_rag(prompt)
             print(answer)
-            results.append({"prompt": prompt, "result": video_result[0]})
+            video_result = '/videos/' + video_result[0]
+            results.append({"prompt": prompt, "result": video_result})
         except Exception as e:
             results.append({"prompt": prompt, "error": str(e)})
 

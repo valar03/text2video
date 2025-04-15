@@ -11,7 +11,7 @@ export default function HomePage() {
 
   const handleSubmit = () => {
     if (username && template) {
-      router.push(`/user/${username}/${template}?username=${username}&amount=${amount}&tenure=${tenure}`);
+      router.push(`/loading/${template}?username=${username}&amount=${amount}&date=${tenure}`);
     }
   };
 
