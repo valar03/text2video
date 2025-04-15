@@ -40,3 +40,5 @@ build
 *.pyc
 public/videos/README (1).md
 public/voiceovers/voiceover_John.mp3
+/public/voiceovers
+/public/voiceovers
