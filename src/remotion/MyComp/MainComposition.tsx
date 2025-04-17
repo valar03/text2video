@@ -14,10 +14,10 @@ const MainComposition = ({ frame, fps }: { frame: number; fps: number }) => {
     const searchParams = new URLSearchParams(window.location.search);
     const pathParts = window.location.pathname.split("/"); 
     const template = pathParts[3];  // "template1"
-
+    
     const username = searchParams.get('username') || 'John Doe';
     const amount = searchParams.get('amount') || '150,000';
-    const date = searchParams.get('tenure') || 'April 7th, 2025';
+    const date = localStorage.getItem('date') || 'April 7th, 2025';
   const slideTexts = generateSlideTexts(username, amount, date);
   const transitionStart = 2 * fps;
   const transitionDuration = 1 * fps;
@@ -34,7 +34,7 @@ const MainComposition = ({ frame, fps }: { frame: number; fps: number }) => {
         const res = await fetch('/api/generate-voiceover', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: username, amount, date }),
+          body: JSON.stringify({ name: username, amount, date, template }),
         });
         const data = await res.json();
         if (data.success) setAudioReady(true);
@@ -78,7 +78,7 @@ const MainComposition = ({ frame, fps }: { frame: number; fps: number }) => {
 
           {audioReady && (
             <Sequence from={voiceoverStartFrame} durationInFrames={totalSlidesDuration}>
-              <Audio src={`/voiceovers/voiceover_${username}.mp3`} volume={1} />
+              <Audio src={`/voiceovers/voiceover_${template}_${username}.mp3`} volume={1} />
             </Sequence>
           )}
 

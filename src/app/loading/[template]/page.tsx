@@ -3,12 +3,13 @@ import { useEffect } from 'react';
 import { useRouter, useSearchParams, useParams } from 'next/navigation';
 import axios from 'axios';
 
-const prompts = [
-  'Welcome to our video presentation!',
-  'Get ready for an exciting journey!',
-  'Loan officer and family',
+// import { prompts } from '../../../types/constants2';
+export const prompts = [
+  "Welcome to our loan completion celebration!",
+  "A huge congratulations on your achievement!",
+  "Skyscrapers and cityscapes symbolize your new financial freedom!",
+  "Here's to new beginnings and financial freedom!"
 ];
-
 export default function LoadingPage() {
   const router = useRouter();
   const searchParams = useSearchParams();

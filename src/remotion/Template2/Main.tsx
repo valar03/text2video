@@ -2,10 +2,10 @@
 'use client';
 
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
-import MainComposition from './MainComposition';
+import {MainComposition2} from './MainComposition2';
 import { useSearchParams } from 'next/navigation';
 
-const Main = () => {
+const Main2 = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const searchParams = useSearchParams();
@@ -16,7 +16,7 @@ const Main = () => {
 
   return (
     <AbsoluteFill>
-      <MainComposition
+      <MainComposition2
         frame={frame}
         fps={fps}
         username={username}
@@ -27,4 +27,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Main2;

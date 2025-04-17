@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { spawn } from 'child_process';
 
 export async function POST(req: NextRequest) {
-  const { name, amount, date } = await req.json();
+  const { name, amount, date, template } = await req.json();
   
   return new Promise((resolve) => {
     const python = spawn('python', ['generate_voiceover.py'], {
       cwd: process.cwd(),
     });
 
-    python.stdin.write(JSON.stringify({ name, amount, date }));
+    python.stdin.write(JSON.stringify({ name, amount, date, template }));
     python.stdin.end();
 
     let output = '';

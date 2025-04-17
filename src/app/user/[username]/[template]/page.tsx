@@ -1,24 +1,28 @@
 'use client';
 
 import { useParams, useSearchParams } from 'next/navigation';
-// import dynamic from 'next/dynamic';
-
-// Remotion Player (client-only)
 import { Player } from '@remotion/player';
-import Main from '@/remotion/MyComp/Main';
+import Main2 from '@/remotion/Template2/Main'; // Template2 component
+import Main from '@/remotion/MyComp/Main';   // MyComp component
 
 export default function TemplatePage() {
   const { username } = useParams();
   const searchParams = useSearchParams();
 
   const amount = searchParams.get('amount') || '';
-  const tenure = searchParams.get('date') || '';
+  const tenure = searchParams.get('tenure') || '';
+
+  // Check the template stored in localStorage to decide which component to render
+  const template = localStorage.getItem('selectedTemplate') || 'template1';
+
+  // Choose the correct component based on the stored template value
+  const SelectedComponent = template === 'template1' ? Main : Main2;
 
   return (
     <div className="p-6">
       <h1 className="text-xl mb-4">Hi {username}, here’s your video preview!</h1>
       <Player
-        component={Main}
+        component={SelectedComponent}
         durationInFrames={450}
         fps={30}
         compositionWidth={1200}
@@ -28,7 +32,7 @@ export default function TemplatePage() {
         inputProps={{
           username,
           amount,
-          date: tenure,
+          tenure: tenure,
         }}
       />
     </div>

@@ -10,7 +10,14 @@ export default function HomePage() {
   const [tenure, setTenure] = useState('');
 
   const handleSubmit = () => {
+    console.log('Form submitted:', { template, username, amount, tenure });
+
     if (username && template) {
+      // localStorage.setItem('selectedTemplate', 'template2');
+      localStorage.setItem('username', username || '');
+      localStorage.setItem('amount', amount || '');
+      localStorage.setItem('tenure', tenure || '');
+      localStorage.setItem("selectedTemplate", template);
       router.push(`/loading/${template}?username=${username}&amount=${amount}&date=${tenure}`);
     }
   };
@@ -20,6 +27,7 @@ export default function HomePage() {
       <h1 className="text-2xl font-bold mb-4">Video Generator</h1>
       <select value={template} onChange={e => setTemplate(e.target.value)} className="border p-2 mb-2">
         <option value="template1">Template 1</option>
+        <option value="template2">Template 2</option>
         {/* Add more templates here */}
       </select>
       <input placeholder="Username" className="block border p-2 mb-2" value={username} onChange={e => setUsername(e.target.value)} />
