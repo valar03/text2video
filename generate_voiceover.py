@@ -15,11 +15,10 @@ name = input_data["name"]
 amount = input_data["amount"]
 date = input_data["date"]
 template = input_data["template"]
-# Voiceover text
-if template == "template1":
-    text = f"Congratulations {name}! Your home loan of ${amount} has been Approved on {date}. Welcome."
-else:
-    text = f"Congratulations {name}! Your home loan of ${amount} has been completed on {date}. Congratulations."
+text = input_data["text"]
+
+# text = text.replace("${name}", name).replace("${amount}", amount).replace("${date}", date)
+
 # Generate the TTS (Text to Speech)
 tts = gTTS(text=text, lang='en')
 
