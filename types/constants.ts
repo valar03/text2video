@@ -2,10 +2,10 @@ import { z } from "zod";
 
 // 🎞️ Composition Settings
 export const COMP_NAME = "LoanVideo";
-export const DURATION_IN_FRAMES = 320;
 export const VIDEO_WIDTH = 1280;
 export const VIDEO_HEIGHT = 720;
-export const VIDEO_FPS = 20;
+export const VIDEO_FPS = 30;
+export const DURATION_IN_FRAMES = VIDEO_FPS * 30; // 10 seconds
 
 export const CompositionProps = z.object({
   title: z.string(),
@@ -27,6 +27,8 @@ export const videoOverlays = [
 export const generateSlideTexts = (name: string, amount: string, date: string) => [
   [`Exciting News for ${name}!`, "Your Home Loan is Approved!"],
   [`Amount: $${amount}`, `Approval Date: ${date}`],
+  ["Your Loan Advisor will contact you soon!"],
+  ["Your financial journey starts now!"],
   ["Welcome to a New Financial Journey!"]
 ];
 

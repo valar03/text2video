@@ -27,11 +27,16 @@ export const videoOverlays = [
 export const generateSlideTexts = (name: string, amount: string, date: string) => [
   [`Congratulations ${name}!`, "Your Home Loan is Fully Paid Off!"],
   [`Amount Paid: $${amount}`, `Completion Date: ${date}`],
-  ["Your Financial Freedom Starts Now!"]
+  ["Your Financial Freedom Starts Now!"],
+  ["Your financial Advisor Alex van been reached out to in the Email Alex@gmail.com"],
+  // ["Thank you for choosing us for your financial journey!"],
+  
+  ["Click the link to know more!"],
+ 
 ];
 
 export const generateVoiceoverScript = (name: string, amount: string, date: string) =>
-  `Congratulations ${name}! Your Home Loan of $${amount} has been fully paid off on ${date}. Your financial freedom starts now!`;
+  `Congratulations ${name}! Your Home Loan of $${amount} has been fully paid off on ${date}. Your financial freedom starts now! Alex, Your financial Advisor would reach out to you shortly. CLick the Link to Know More`;
 
 // 💬 Fallback prompts
 export const prompts = [

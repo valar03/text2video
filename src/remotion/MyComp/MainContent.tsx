@@ -8,7 +8,7 @@ const MainContent = () => {
   const searchParams = useSearchParams();
   const username = searchParams.get('username') || 'John Doe';
   const amount = searchParams.get('amount') || '150,000';
-  const date = searchParams.get('date') || 'April 7th, 2025';
+  const date = searchParams.get('tenure') || 'April 7th, 2025';
 
   const slideTexts = generateSlideTexts(username, amount, date);
 

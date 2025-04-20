@@ -16,6 +16,7 @@
     "@remotion/media-utils": "^4.0.286",
     "@remotion/paths": "4.0.286",
     "@remotion/player": "4.0.286",
+    "@remotion/renderer": "^4.0.289",
     "@remotion/shapes": "4.0.286",
     "@remotion/tailwind-v4": "4.0.286",
     "axios": "^1.8.4",
@@ -28,6 +29,7 @@
     "react-dom": "19.0.0",
     "remotion": "4.0.286",
     "tailwind-merge": "3.0.1",
+    "ws": "^8.18.1",
     "zod": "3.22.3"
   },
   "devDependencies": {
