@@ -38,10 +38,13 @@ export async function POST(req: NextRequest) {
       throw new Error('Rendered video file not found.');
     }
 
+    // Generate a unique token for the download URL
+    const downloadToken = Buffer.from(outputPath).toString('base64');
+
     // Return the download URL for the rendered video
     return NextResponse.json({
       success: true,
-      downloadUrl: `/api/download-video?path=${encodeURIComponent(outputPath)}`,
+      downloadUrl: `/api/download-video?token=${encodeURIComponent(downloadToken)}`,
     });
   } catch (error) {
     console.error('Error rendering video:', error);

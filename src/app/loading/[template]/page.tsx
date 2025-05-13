@@ -8,7 +8,9 @@ export const prompts = [
   "Welcome to our loan completion celebration!",
   "A huge congratulations on your achievement!",
   "Skyscrapers and cityscapes symbolize your new financial freedom!",
-  "Here's to new beginnings and financial freedom!"
+  "Here's to new beginnings and financial freedom!",
+  "House",
+  "Comlpeted",
 ];
 export default function LoadingPage() {
   const router = useRouter();
